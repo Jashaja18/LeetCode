@@ -5,23 +5,28 @@
 #         self.next = next
 class Solution:
     def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
+        # 1. Find the node before the left node
+        # 2. Reverse the nodes between left and right
+        # 3. Connect the reversed nodes to the left node
+        # 4. Connect the left node to the right node
+        # 5. Return the head
+        if not head:
+            return head
 
-        # set two pointers
-        slow = fast = head
+        dummy_node = ListNode()
+        dummy_node.next = head
 
-        while fast and fast.next:
-            slow = slow.next
-            fast = fast.next.next
+        prev = dummy_node
 
-        prev = None
+        for i in range(left - 1):
+            prev = prev.next
+        curr = prev.next
 
-        # slow pointer: reverse the list
-        while slow:
-            slow.next, prev, slow = prev, slow, slow.next
-            first, second = head, prev
+        for i in range(right - left):
+            temp = curr.next
+            curr.next = temp.next
+            temp.next = prev.next
+            prev.next = temp
 
-        # once reversed the element is combined back together
-        while second.next:
-            first.next, first = second, first.next
-            second.next, second = first, second.next
+        return dummy_node.next
 
