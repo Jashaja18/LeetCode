@@ -6,11 +6,11 @@
 class Solution:
     def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
         # if loop with head is null and head.next is null we will just return head
-        if head == None or head.next == None:
+        if head is None or head.next is None:
             return head
         else:
-            temp = head.next # set temp to head.next
+            temp = head.next  # set temp to head.next
             # head.next is set to swapPairs with a parameter of head.next.next
             head.next = self.swapPairs(head.next.next)
-            temp.next = head # temp.next is set to the head
-        return temp # return temp as the end
+            temp.next = head  # temp.next is set to the head
+        return temp  # return temp as the end
