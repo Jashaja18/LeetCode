@@ -5,6 +5,8 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
-        if root is None:
-            return 0
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        self.k = k
+        self.res = None
+        self.inorder(root)
+        return self.res
